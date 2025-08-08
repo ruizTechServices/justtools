@@ -11,6 +11,10 @@ interface ResultCardProps {
 }
 
 export default function ResultCard({ summary, error }: ResultCardProps) {
+  // Hooks must be called unconditionally at the top level
+  const [expanded, setExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
+
   if (!summary && !error) return null;
 
   if (error) {
@@ -22,17 +26,13 @@ export default function ResultCard({ summary, error }: ResultCardProps) {
     );
   }
 
-  // Summary UI
-  const [expanded, setExpanded] = useState(false);
-  const [copied, setCopied] = useState(false);
-
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(summary || "");
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
       toast.success("Summary copied to clipboard");
-    } catch (e) {
+    } catch {
       toast.error("Failed to copy");
     }
   };

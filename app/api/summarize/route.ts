@@ -26,8 +26,9 @@ export async function POST(request: Request) {
     const summary = await summarizeText(text);
 
     return NextResponse.json({ summary });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[summarize]", error);
-    return NextResponse.json({ error: error.message ?? "Unknown error" }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
