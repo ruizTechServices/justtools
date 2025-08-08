@@ -1,10 +1,14 @@
 import Summarizer from '@/components/app/summarizer/Summarizer';
 import { Toaster } from '@/components/ui/sonner';
-
+import Navbar from '@/components/app/landing_page/Navbar';
+const items = [
+  { href: "/", label: "Home" },
+];
 export default function SummarizerPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto max-w-3xl px-4 py-10">
+        <Navbar items={items}/>
         <Summarizer />
       </div>
       <Toaster richColors closeButton position="top-right" />

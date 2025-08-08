@@ -12,10 +12,13 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
+
+
 export default function Summarizer() {
   const [{ summary, error, loading }, summarize] = useSummarizer();
 
   return (
+    <>
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl">📄 AI PDF Summarizer</CardTitle>
@@ -40,5 +43,6 @@ export default function Summarizer() {
         </div>
       </CardContent>
     </Card>
+    </>
   );
 }
